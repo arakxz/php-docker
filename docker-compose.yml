@@ -1,5 +1,16 @@
 web:
-  build: .
+  # build: .
+  image: deb-php:stable
   ports:
    - "80:80"
   container_name: webapp
+  links:
+   - mariadb
+mariadb:
+  image: mariadb:latest
+  environment:
+   - MYSQL_ROOT_PASSWORD=...
+   - MYSQL_DATABASE=...
+   - MYSQL_USER=...
+   - MYSQL_PASSWORD=...
+  container_name: db
